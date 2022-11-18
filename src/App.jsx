@@ -1,5 +1,14 @@
+import { BrowserRouter } from 'react-router-dom'
+
 import './App.css'
+import AppRoute from './routes'
 
 export const App = () => {
-  return <h1>Hello World</h1>
+  return (
+    <>
+      <BrowserRouter>
+        <AppRoute />
+      </BrowserRouter>
+    </>
+  )
 }
