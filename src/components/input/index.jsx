@@ -10,7 +10,7 @@ export function Input({ label, placeholder }) {
           className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
           id="email"
           placeholder={placeholder}
-          type="email"
+          type="text"
         />
       </div>
     </>
