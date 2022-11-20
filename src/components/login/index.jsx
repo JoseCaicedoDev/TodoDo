@@ -2,18 +2,19 @@ import { Link } from 'react-router-dom'
 
 import { Input } from '../input'
 import { Button } from '../button'
+import { ImgLogin } from '../imgLogin'
 
 export function Login() {
   return (
     <>
       <div className="min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-2">
         <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto">
-          {/* <!-- Titulo --> */}
+          {/* Titulo */}
           <div className="flex flex-col gap-1 w-full">
             <h1 className="text-4xl font-medium">Iniciar sesión</h1>
             <p className="text-gray-400">Ingresa al sistema con tus credenciales</p>
           </div>
-          {/* <!-- Form --> */}
+          {/* Form */}
           <form className="flex flex-col gap-4">
             <Input label="Correo electrónico *" placeholder="Ingresa tu correo electrónico" />
             <Input label="Contraseña *" placeholder="Ingresa tu contraseña" />
@@ -34,8 +35,8 @@ export function Login() {
             <Button name="Iniciar sesión" />
           </form>
         </div>
-        {/* <!-- Imagen de fondo --> */}
-        <div className="bg hidden lg:block" />
+        {/* Imagen de fondo */}
+        <ImgLogin />
       </div>
     </>
   )

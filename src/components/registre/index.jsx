@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { Button } from '../button'
+import { ImgLogin } from '../imgLogin'
 import { Input } from '../input'
 
 export function Registre() {
@@ -8,12 +9,12 @@ export function Registre() {
     <>
       <div className="min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-2">
         <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto">
-          {/*           <!-- Titulo con descripción --> */}
+          {/* Titulo con descripción */}
           <div className="flex flex-col gap-1 w-full">
             <h1 className="text-4xl font-medium">Crear cuenta</h1>
             <p className="text-gray-400">Registrate en la plataforma</p>
           </div>
-          {/*           <!-- Form --> */}
+          {/* Form */}
           <form className="flex flex-col gap-4">
             <Input label="Nombre completo *" placeholder="Ingresa tu nombre completo" />
             <Input label="Correo electrónico *" placeholder="Ingresa tu correo electrónico" />
@@ -32,8 +33,8 @@ export function Registre() {
             <Button name="Crear cuenta" />
           </form>
         </div>
-        {/*         <!-- Imagen de fondo --> */}
-        <div className="bg hidden lg:block" />
+        {/* Imagen de fondo */}
+        <ImgLogin />
       </div>
     </>
   )
