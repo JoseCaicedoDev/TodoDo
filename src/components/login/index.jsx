@@ -5,6 +5,10 @@ import { Button } from '../button'
 import { ImgLogin } from '../imgLogin'
 
 export function Login() {
+  const handleChange = (e) => {
+    console.log(e.target.value)
+  }
+
   return (
     <>
       <div className="min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-2">
@@ -16,8 +20,18 @@ export function Login() {
           </div>
           {/* Form */}
           <form className="flex flex-col gap-4">
-            <Input label="Correo electrónico *" placeholder="Ingresa tu correo electrónico" />
-            <Input label="Contraseña *" placeholder="Ingresa tu contraseña" />
+            <Input
+              handle={handleChange}
+              label="Correo electrónico *"
+              placeholder="Ingresa tu correo electrónico"
+              type="email"
+            />
+            <Input
+              handle={handleChange}
+              label="Contraseña *"
+              placeholder="Ingresa tu contraseña"
+              type="password"
+            />
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 order-2 md:order-1">
               <span className="text-gray-400">
                 ¿No tienes cuenta?{' '}
