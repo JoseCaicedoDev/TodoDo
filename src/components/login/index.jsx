@@ -5,8 +5,19 @@ import { Button } from '../button'
 import { ImgLogin } from '../imgLogin'
 
 export function Login() {
-  const handleChange = (e) => {
-    console.log(e.target.value)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const email = e.target.email.value
+    const password = e.target.password.value
+    const regex =
+      "A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?: [a - z0 - 9](?: [a - z0 - 9 -] * [a - z0 - 9]) ?.) + [a - z0 - 9](?: [a - z0 - 9 -] * [a - z0 - 9]) ?z"
+
+    if (email == '' || password == '') {
+      console.log('los datos no puede ser vacios')
+    }
+    if (email !== '' && !regex.test(email)) {
+      console.log('email invalido')
+    }
   }
 
   return (
@@ -19,16 +30,16 @@ export function Login() {
             <p className="text-gray-400">Ingresa al sistema con tus credenciales</p>
           </div>
           {/* Form */}
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <Input
-              handle={handleChange}
               label="Correo electrónico *"
+              name="email"
               placeholder="Ingresa tu correo electrónico"
-              type="email"
+              type="text"
             />
             <Input
-              handle={handleChange}
               label="Contraseña *"
+              name="password"
               placeholder="Ingresa tu contraseña"
               type="password"
             />
