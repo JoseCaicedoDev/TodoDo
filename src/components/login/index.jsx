@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { Toaster, toast } from 'react-hot-toast'
 
 import { Input } from '../input'
 import { Button } from '../button'
@@ -9,15 +11,30 @@ export function Login() {
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
+
     const regex =
-      "A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?: [a - z0 - 9](?: [a - z0 - 9 -] * [a - z0 - 9]) ?.) + [a - z0 - 9](?: [a - z0 - 9 -] * [a - z0 - 9]) ?z"
+      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
     if (email == '' || password == '') {
-      console.log('los datos no puede ser vacios')
+      toast('los datos no puede ser vacios')
+
+      return
     }
     if (email !== '' && !regex.test(email)) {
-      console.log('email invalido')
+      toast('email invalido')
+
+      return
     }
+    if (email !== 'challenge@alkemy.org' || password !== 'react') {
+      toast('Credenciales invalidas')
+
+      return
+    }
+    toast('Informacion Correcta')
+
+    axios.post('http://challenge-react.alkemy.org', { email, password }).then((res) => {
+      console.log(res.data)
+    })
   }
 
   return (
@@ -59,6 +76,7 @@ export function Login() {
             </div>
             <Button name="Iniciar sesión" />
           </form>
+          <Toaster position="bottom-center" />
         </div>
         {/* Imagen de fondo */}
         <ImgLogin />
