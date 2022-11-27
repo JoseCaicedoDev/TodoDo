@@ -30,10 +30,13 @@ export function Login() {
 
       return
     }
-    toast('Informacion Correcta')
+    console.log('Informacion Correcta')
 
     axios.post('http://challenge-react.alkemy.org', { email, password }).then((res) => {
-      console.log(res.data)
+      toast('Estas Logeado')
+      const token = res.data.token
+
+      localStorage.setItem('tokenRes', token)
     })
   }
 
