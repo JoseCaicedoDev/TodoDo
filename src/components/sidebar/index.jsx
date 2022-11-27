@@ -1,16 +1,20 @@
+import { useSelector } from 'react-redux'
+
 import { Input } from '../input'
 import imgUser from '../../assets/user.svg'
 export function Sidebar() {
+  const user = useSelector((state) => state.user)
+
   return (
     <>
-      <sidebar className="flex flex-col justify-between gap-8 bg-[#252831] min-h-screen max-h-screen w-80 p-4">
+      <div className="flex flex-col justify-between gap-8 bg-[#252831] min-h-screen max-h-screen w-80 p-4">
         {/* Top */}
         <section>
           {/* Logo */}
           <div className="logo flex items-center gap-4 mb-8">
             <img className="w-10 h-10 bg-gray-500 p-2 rounded-full" src={imgUser} />
             <div>
-              <h3 className="font-bold text-white">alvaro.unlp@gmail.com</h3>
+              <h3 className="font-bold text-white">{user.email}</h3>
             </div>
           </div>
           {/* Search */}
@@ -118,7 +122,7 @@ export function Sidebar() {
             </li>
           </ul>
         </section>
-      </sidebar>
+      </div>
     </>
   )
 }

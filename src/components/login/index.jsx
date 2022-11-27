@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Toaster, toast } from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 
 import { Input } from '../input'
 import { Button } from '../button'
 import { ImgLogin } from '../imgLogin'
+import { setUser } from '../../reducers/users/userSlice'
 
 export function Login() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const email = e.target.email.value
@@ -25,19 +30,42 @@ export function Login() {
 
       return
     }
-    if (email !== 'challenge@alkemy.org' || password !== 'react') {
+    if (email !== 'jo@cai.com' || password !== '123') {
       toast('Credenciales invalidas')
 
       return
     }
     console.log('Informacion Correcta')
 
-    axios.post('http://challenge-react.alkemy.org', { email, password }).then((res) => {
-      toast('Estas Logeado')
-      const token = res.data.token
+    axios
+      .post('https://ctd-todo-api-v2.herokuapp.com/v1/users/login', { email, password })
+      .then((res) => {
+        const token = res.data.jwt
 
-      localStorage.setItem('tokenRes', token)
-    })
+        localStorage.setItem('tokenRes', token)
+      })
+    let headers = {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: localStorage.getItem('tokenRes'),
+    }
+
+    if (localStorage.getItem('tokenRes') !== '') {
+      axios
+        .get('https://ctd-todo-api-v2.herokuapp.com/v1/users/getMe', { headers: headers })
+        .then((res) => {
+          console.log(res.data)
+          dispatch(
+            setUser({
+              id: res.data.id,
+              email: res.data.email,
+              firstName: res.data.firstName,
+              lastName: res.data.lastName,
+            }),
+          )
+        })
+      toast('Estas Logeado')
+      navigate('/das')
+    }
   }
 
   return (
