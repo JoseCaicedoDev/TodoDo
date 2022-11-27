@@ -12,6 +12,7 @@ export function Sidebar() {
   const handleLogout = () => {
     dispatch(unsetUser())
     navigate('/')
+    localStorage.removeItem('tokenRes')
   }
 
   return (
