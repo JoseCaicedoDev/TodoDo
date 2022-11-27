@@ -1,9 +1,18 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
+import { unsetUser } from '../../reducers/users/userSlice'
 import { Input } from '../input'
 import imgUser from '../../assets/user.svg'
 export function Sidebar() {
   const user = useSelector((state) => state.user)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleLogout = () => {
+    dispatch(unsetUser())
+    navigate('/')
+  }
 
   return (
     <>
@@ -14,7 +23,7 @@ export function Sidebar() {
           <div className="logo flex items-center gap-4 mb-8">
             <img className="w-10 h-10 bg-gray-500 p-2 rounded-full" src={imgUser} />
             <div>
-              <h3 className="font-bold text-white">{user.email}</h3>
+              <h3 className="font-bold text-white">{user.lastName}</h3>
             </div>
           </div>
           {/* Search */}
@@ -119,6 +128,15 @@ export function Sidebar() {
                 </svg>
                 <span>Ayuda</span>
               </a>
+            </li>
+            <li className="text-center">
+              <button
+                className="block w-full p-2 text-gray-500 hover:bg-gray-200 transition-colors rounded-lg"
+                href="#"
+                onClick={handleLogout}
+              >
+                Salir
+              </button>
             </li>
           </ul>
         </section>
